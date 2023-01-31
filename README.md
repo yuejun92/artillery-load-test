@@ -6,7 +6,6 @@ To simulate load to waiting room and load testing.
 
 - [Install](#install)
 - [Usage](#usage)
-- [Change Logs](./CHANGELOG.md)
 
 ## Install
 
