@@ -1,0 +1,19 @@
+config:
+  target: "https://api.stg-queue.singpass.gov.sg/v1/session?target=aHR0cHM6Ly9hcGkuZGV2LXF1ZXVlLnNpbmdwYXNzLmdvdi5zZy92MS9oZWxsb3dvcmxk"
+  processor: "./functions.js"
+  phases:
+    - duration: 10
+      arrivalRate: 100
+      name: "Burst"
+scenarios:
+  - flow:
+    - get:
+        url: "/"
+        afterResponse: "processData"
+    - loop:
+      - get:
+          url: "/"
+          headers:
+            Cookie: ${processedData.cookie}
+          afterResponse: "processData"
+      whileTrue: "statusReady"
